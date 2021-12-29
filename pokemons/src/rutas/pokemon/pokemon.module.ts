@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonComponent } from './ruta/pokemon/pokemon.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { PokemonComponent } from './ruta/pokemon/pokemon.component';
   ],
   imports: [
     CommonModule,
-    PokemonRoutingModule
+    PokemonRoutingModule,
+    MatTableModule,
+    MatIconModule
   ]
 })
 export class PokemonModule { }

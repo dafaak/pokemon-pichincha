@@ -1,21 +1,47 @@
-<div>
+<div class="container">
+  <div class="row  mt-3 justify-content-center">
 
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Imagen</th>
-      <th>Ataque</th>
-      <th>Defensa</th>
-      <th>Acciones</th>
-    </tr>
-    <tr *ngFor="let pokemon of listaPokemons">
-      <td>{{pokemon.name}}</td>
-      <td><img  [src]="pokemon.image" height="120px" width="120px"></td>
-      <td>{{pokemon.attack}}</td>
-      <td>{{pokemon.defense}}</td>
-      <td>
-        <button>X</button>
-      </td>
-    </tr>
-  </table>
+    <table  #tablePokemons mat-table [dataSource]="listaPokemons" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre</th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.name}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="imagen">
+        <th mat-header-cell *matHeaderCellDef> Imagen</th>
+        <td mat-cell *matCellDef="let pokemon"><img height="56px" width="56px" [src]="pokemon.image"
+                                                    alt="Imagen pokemon"></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="ataque">
+        <th mat-header-cell *matHeaderCellDef> Ataque</th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.attack}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="defensa">
+        <th mat-header-cell *matHeaderCellDef> Defensa</th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.defense}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones</th>
+        <td mat-cell *matCellDef="let pokemon">
+          <button class="btn" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="btn" (click)="eliminarPokemon(pokemon.id)" mat-icon-button
+                  aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+  </div>
 </div>

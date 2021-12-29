@@ -21,7 +21,7 @@ export class PokemonService {
   }
 
   buscarPokemonPorId(idPokemon: number) {
-    return this.httpService.get(environment.urlBackend + '?id=' + idPokemon).pipe(
+    return this.httpService.get(environment.urlBackend + idPokemon).pipe(
       shareReplay()
     )
   }
@@ -39,7 +39,7 @@ export class PokemonService {
   }
 
   eliminarPokemon(idPokemon: number) {
-    return this.httpService.delete(environment.urlBackend + '?id=' + idPokemon).pipe(
+    return this.httpService.delete(environment.urlBackend + idPokemon).pipe(
       shareReplay()
     )
   }
