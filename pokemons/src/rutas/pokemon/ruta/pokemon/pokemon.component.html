@@ -1,1 +1,21 @@
-<p>pokemon works!</p>
+<div>
+
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Imagen</th>
+      <th>Ataque</th>
+      <th>Defensa</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let pokemon of listaPokemons">
+      <td>{{pokemon.name}}</td>
+      <td><img  [src]="pokemon.image" height="120px" width="120px"></td>
+      <td>{{pokemon.attack}}</td>
+      <td>{{pokemon.defense}}</td>
+      <td>
+        <button>X</button>
+      </td>
+    </tr>
+  </table>
+</div>
