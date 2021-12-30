@@ -7,6 +7,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {FormularioCrearEditarPokemonModule} from './formularios/formulario-crear-editar-pokemon/formulario-crear-editar-pokemon.module';
 import {MatButtonModule} from '@angular/material/button';
+import {BusquedaModule} from '../../componentes-generales/busqueda/busqueda.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatTableModule,
     MatIconModule,
     FormularioCrearEditarPokemonModule,
-    MatButtonModule
+    MatButtonModule,
+    BusquedaModule
   ]
 })
 export class PokemonModule { }

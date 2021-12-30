@@ -10,7 +10,7 @@ import {MatTable} from '@angular/material/table';
 })
 export class PokemonComponent implements OnInit {
   @ViewChild(MatTable) tablePokemons: MatTable<PokemonInterface> | undefined;
-
+  listaPokemonsFiltrado: PokemonInterface[] = [];
   listaPokemons: PokemonInterface[] = [];
   columnas: string[] = ['name', 'imagen', 'ataque', 'defensa', 'acciones'];
   mostrarForm = false;
@@ -30,9 +30,18 @@ export class PokemonComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(
       (res: PokemonInterface[]) => {
         this.listaPokemons = res;
+        this.listaPokemonsFiltrado = res;
       },
       (error: any) => {
         console.error('Error consultando Pokemons!')
+      }
+    )
+  }
+
+  buscar(event: any) {
+    this.listaPokemonsFiltrado = this.listaPokemons.filter(
+      (pokemon) => {
+        return pokemon.name?.toLowerCase().includes(event.busqueda)
       }
     )
   }
@@ -61,19 +70,6 @@ export class PokemonComponent implements OnInit {
     this.mostrarForm = true;
     this.crear = false;
     this.pokemonAEditar = pokemon;
-    // if (!this.mostrarForm) {
-    //   this.mostrarForm = true;
-    //   this.crear = false;
-    //   this.pokemonAEditar = pokemon;
-    // } else {
-    //   this.mostrarForm = false;
-    //   setTimeout(() => {
-    //     this.mostrarForm = true;
-    //     this.crear = false;
-    //     this.pokemonAEditar = pokemon;
-    //   }, 100);
-    // }
-
   }
 
   recibirDatosForm(event: any) {
@@ -88,7 +84,7 @@ export class PokemonComponent implements OnInit {
   }
 
   guardarDatos(pokemon: PokemonInterface) {
-    console.log('crear:', this.crear,this.mostrarForm, this.pokemonAEditar, pokemon);
+    console.log('crear:', this.crear, this.mostrarForm, this.pokemonAEditar, pokemon);
     if (this.crear) {
       pokemon.idAuthor = 1;
       this.pokemonService.crearPokemon(pokemon).subscribe(
@@ -125,6 +121,7 @@ export class PokemonComponent implements OnInit {
   }
 
   agregarPokemonALista(pokemon: PokemonInterface) {
+    this.listaPokemonsFiltrado.unshift(pokemon);
     this.listaPokemons.unshift(pokemon);
     this.tablePokemons?.renderRows();
   }
@@ -133,18 +130,31 @@ export class PokemonComponent implements OnInit {
     const indiceEncontrado = this.listaPokemons.findIndex(pokemon => {
       return pokemon.id === idPokemon;
     });
+    const indiceEncontradoListaFiltrados = this.listaPokemonsFiltrado.findIndex(pokemon => {
+      return pokemon.id === idPokemon;
+    });
     if (indiceEncontrado >= 0) {
       this.listaPokemons.splice(indiceEncontrado, 1);
+    }
+    if (indiceEncontradoListaFiltrados >= 0) {
+      this.listaPokemonsFiltrado.splice(indiceEncontradoListaFiltrados, 1);
       this.tablePokemons?.renderRows();
     }
+
   }
 
   actualizarPokemonDeLista(idPokemon: number, pokemon: PokemonInterface) {
     const indiceEncontrado = this.listaPokemons.findIndex(pokemon => {
       return pokemon.id === idPokemon;
     });
+    const indiceEncontradoListaFiltrados = this.listaPokemonsFiltrado.findIndex(pokemon => {
+      return pokemon.id === idPokemon;
+    });
     if (indiceEncontrado >= 0) {
       this.listaPokemons[indiceEncontrado] = pokemon;
+    }
+    if (indiceEncontradoListaFiltrados >= 0) {
+      this.listaPokemonsFiltrado[indiceEncontradoListaFiltrados] = pokemon;
       this.tablePokemons?.renderRows();
     }
   }

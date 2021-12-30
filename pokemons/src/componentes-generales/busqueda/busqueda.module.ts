@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BusquedaComponent } from './busqueda.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BusquedaComponent} from './busqueda.component';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -9,7 +11,13 @@ import { BusquedaComponent } from './busqueda.component';
     BusquedaComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule
+  ],
+  exports: [BusquedaComponent]
 })
-export class BusquedaModule { }
+export class BusquedaModule {
+}

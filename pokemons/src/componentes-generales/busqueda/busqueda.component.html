@@ -1,1 +1,20 @@
-<p>busqueda works!</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-10">
+      <form [formGroup]="formBusqueda">
+        <div class="form-group ">
+          <input
+            [formControlName]="'busqueda'"
+            type="text"
+            class="form-control form-control-placeholdericon"
+            id="busqueda"
+            aria-describedby="ayudaFicha"
+            placeholder="&#xe8b6; Buscar"
+          >
+        </div>
+        <ng-content></ng-content>
+      </form>
+    </div>
+  </div>
+</div>
