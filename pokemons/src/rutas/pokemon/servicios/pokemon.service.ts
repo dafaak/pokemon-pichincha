@@ -27,15 +27,13 @@ export class PokemonService {
   }
 
   crearPokemon(pokemon: PokemonInterface) {
-    return this.httpService.post(environment.urlBackend + '?idAuthor=1', {pokemon}).pipe(
+    return this.httpService.post(environment.urlBackend + '?idAuthor=1', pokemon).pipe(
       shareReplay()
     )
   }
 
   actualizarPokemon(idPokemon: number, pokemon: PokemonInterface) {
-    return this.httpService.put(environment.urlBackend + '?id=' + idPokemon, {pokemon}).pipe(
-      shareReplay()
-    )
+    return this.httpService.put(environment.urlBackend  + idPokemon, pokemon)
   }
 
   eliminarPokemon(idPokemon: number) {

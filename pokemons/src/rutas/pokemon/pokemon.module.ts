@@ -5,6 +5,8 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonComponent } from './ruta/pokemon/pokemon.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {FormularioCrearEditarPokemonModule} from './formularios/formulario-crear-editar-pokemon/formulario-crear-editar-pokemon.module';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule,
     PokemonRoutingModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    FormularioCrearEditarPokemonModule,
+    MatButtonModule
   ]
 })
 export class PokemonModule { }

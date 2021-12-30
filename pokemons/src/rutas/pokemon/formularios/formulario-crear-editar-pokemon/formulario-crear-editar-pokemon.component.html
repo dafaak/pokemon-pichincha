@@ -1,1 +1,87 @@
-<p>formulario-crear-editar-pokemon works!</p>
+<div class="mt-2 row justify-content-center">
+  <div class="col-4">
+    <h1>Formulario Pokemon</h1>
+  </div>
+</div>
+<div class="row">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="row">
+          <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
+          <div class="col-sm-10">
+            <input [formControlName]="'name'" type="text" class="form-control" id="name">
+          </div>
+        </div>
+        <div class=" mt-sm-3 row">
+          <label for="image" class="col-sm-2 col-form-label">Imagen:</label>
+          <div class="col-sm-10">
+            <input [formControlName]="'image'" type="text" class="form-control" id="image">
+          </div>
+        </div>
+        <div class=" mt-sm-3 row">
+          <label for="type" class="col-sm-2 col-form-label">Imagen:</label>
+          <div class="col-sm-10">
+            <select [formControlName]="'type'" class="form-select" aria-label="Default select example" id="type">
+              <option selected>Seleccione una opción</option>
+              <option value="water">Agua</option>
+              <option value="fire">Fuego</option>
+              <option value="normal">Normal</option>
+              <option value="bug">Insecto</option>
+              <option value="poison">Venenoso</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6  col-sm-12">
+        <div class="row ">
+          <label for="attack" class="col-sm-2 col-form-label">Ataque:</label>
+          <div class="col-sm-1 mt-2" *ngIf="form.get('attack')?.value>0">{{form.get('attack')?.value}}</div>
+          <div class="col-sm-1 mt-2" *ngIf="!form.get('attack')?.value">0</div>
+          <div class="col-sm-1 mt-2">0</div>
+          <div class="col-sm-6 mt-2">
+            <input [formControlName]="'attack'" type="range" class="form-range" min="0" max="100" id="attack">
+          </div>
+          <div class="col-sm-1 mt-2">100</div>
+        </div>
+        <div class="row mt-4 ">
+          <label for="defense" class="col-sm-2 col-form-label">Defensa:</label>
+          <div class="col-sm-1 mt-2" *ngIf="form.get('defense')?.value>0">{{form.get('defense')?.value}}</div>
+          <div class="col-sm-1 mt-2" *ngIf="!form.get('defense')?.value">0</div>
+          <div class="col-sm-1 mt-2">0</div>
+          <div class="col-sm-6 mt-2">
+            <input [formControlName]="'defense'" type="range" class="form-range" min="0" max="100" id="defense">
+          </div>
+          <div class="col-sm-1 mt-2">100</div>
+        </div>
+        <div class="row mt-4 ">
+          <label for="hp" class="col-sm-2 col-form-label">Salud:</label>
+          <div class="col-sm-1 mt-2" *ngIf="form.get('hp')?.value>0">{{form.get('hp')?.value}}</div>
+          <div class="col-sm-1 mt-2" *ngIf="!form.get('hp')?.value">0</div>
+          <div class="col-sm-1 mt-2">0</div>
+          <div class="col-sm-6 mt-2">
+            <input [formControlName]="'hp'" type="range" class="form-range" min="0" max="100" id="hp">
+          </div>
+          <div class="col-sm-1 mt-2">100</div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+<div class=" mt-3  row justify-content-center">
+  <div class=" col-md-2 col-sm-2  ">
+    <button mat-raised-button color="primary" [disabled]="disabledGuardar" (click)="emitirGuardar()">
+      <mat-icon style="vertical-align: middle;"> save</mat-icon>
+      Guardar
+    </button>
+  </div>
+  <div class=" col-md-2 col-sm-2 ">
+    <button mat-raised-button color="primary" (click)="emitirCancelar()">
+      <mat-icon style="vertical-align: middle;">close</mat-icon>
+      Cancelar
+    </button>
+  </div>
+</div>
+
+
