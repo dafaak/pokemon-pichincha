@@ -10,7 +10,7 @@ import {PokemonInterface} from '../../interfaces/pokemon.interface';
 export class FormularioCrearEditarPokemonComponent implements OnInit {
   form: FormGroup;
   disabledGuardar = true;
-  @Input() pokemon!: PokemonInterface;
+  @Input() pokemon: PokemonInterface = {};
   @Output() pokemonCrearEditar: EventEmitter<PokemonInterface | string> = new EventEmitter<PokemonInterface | string>();
 
   constructor() {
