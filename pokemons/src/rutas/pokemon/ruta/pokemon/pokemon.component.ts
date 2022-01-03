@@ -29,8 +29,8 @@ export class PokemonComponent implements OnInit {
   consultarPokemons() {
     this.pokemonService.getPokemons().subscribe(
       (res: PokemonInterface[]) => {
-        this.listaPokemons = res;
-        this.listaPokemonsFiltrado = res;
+        this.listaPokemons = res.slice();
+        this.listaPokemonsFiltrado = res.slice();
       },
       (error: any) => {
         console.error('Error consultando Pokemons!')
